@@ -5,5 +5,9 @@ export async function insertMovieIntoDB(movieData: movie){
 
     const {name, platform, kind} = movieData;
 
-    return await connection.query(`INSERT INTO movies (name, platform, kind) VALUES ($1, $2, $3)`,[name, platform, kind]);
+    return await connection.query(`INSERT INTO movies (name, platform, kind) VALUES ($1, $2, $3);`,[name, platform, kind]);
+}
+
+export async function getMoviesFromDB(){
+    return await connection.query(`SELECT * FROM movies;`);
 }

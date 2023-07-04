@@ -8,13 +8,22 @@ export async function postMovie(req: Request, res: Response){
     const movieData = req.body as movie;
 
     try{
-        const result = moviesServices.insertMovie(movieData);
+        const result = await moviesServices.insertMovie(movieData);
         res.sendStatus(httpStatus.OK);
 
     } catch(error){
-        if(error.type === "internalServerError"){
-            res.status(httpStatus.INTERNAL_SERVER_ERROR).send(error.message);   
-        }
+            res.status(httpStatus.INTERNAL_SERVER_ERROR).send(error.message);
     }
 
+}
+
+export async function getMovies(req: Request, res: Response){
+    try{
+        const movies = await moviesServices.getMovies();
+        
+        res.status(httpStatus.CREATED).send(movies.rows);
+
+    } catch(error){
+        res.status(httpStatus.INTERNAL_SERVER_ERROR).send(error.message);
+        }
 }
