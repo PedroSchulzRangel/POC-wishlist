@@ -19,3 +19,7 @@ export async function getMovieById(id: string){
 export async function updateMovieStatus(id: string){
     return await connection.query(`UPDATE movies SET seen=true WHERE id=$1;`,[id]);
 }
+
+export async function deleteMovieById(id: string){
+    return await connection.query(`DELETE FROM movies WHERE id=$1;`,[id]);
+}

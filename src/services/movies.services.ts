@@ -37,3 +37,8 @@ export async function updateMovie(id: string){
     const result = await moviesRepository.updateMovieStatus(id);
     return result;
 }
+
+export async function deleteMovie(id: string){
+    const result = await moviesRepository.deleteMovieById(id);
+    return result;
+}

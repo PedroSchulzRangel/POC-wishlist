@@ -45,3 +45,21 @@ export async function updateMovie(req: Request, res: Response){
         res.status(httpStatus.INTERNAL_SERVER_ERROR).send(error.message);
     }
 }
+
+export async function deleteMovie(req: Request, res: Response){
+    
+    const {id} = req.params;
+
+    try{
+        const selectedMovie = await moviesServices.getMovieById(id);
+
+        if(selectedMovie.rowCount === 0) return res.sendStatus(httpStatus.NOT_FOUND);
+
+        const deletedMovie = await moviesServices.deleteMovie(id);
+
+        res.sendStatus(httpStatus.OK);
+
+    } catch(error){
+        res.status(httpStatus.INTERNAL_SERVER_ERROR).send(error.message);
+    }
+}
