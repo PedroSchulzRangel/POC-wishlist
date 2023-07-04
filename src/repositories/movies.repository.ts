@@ -11,3 +11,11 @@ export async function insertMovieIntoDB(movieData: movie){
 export async function getMoviesFromDB(){
     return await connection.query(`SELECT * FROM movies;`);
 }
+
+export async function getMovieById(id: string){
+    return await connection.query(`SELECT * FROM movies WHERE id=$1;`,[id]);
+}
+
+export async function updateMovieStatus(id: string){
+    return await connection.query(`UPDATE movies SET seen=true WHERE id=$1;`,[id]);
+}
