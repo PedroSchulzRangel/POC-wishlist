@@ -1,10 +1,13 @@
 import { Router } from "express";
+import validateSchema from "../middlewares/validateSchema";
+import {moviesSchema} from "../schemas/movies.schema";
+import {postMovie} from "../controllers/movies.controllers";
+
 
 const moviesRouter = Router();
 
-//moviesRouter.post("/movie",???,???);
+moviesRouter.post("/movie",validateSchema(moviesSchema),postMovie);
 //moviesRouter.get("/movies",???);
-//moviesRouter.get("/movies/platform",???);
 //moviesRouter.patch("/movie/:id",???,???);
 //moviesRouter.delete("/movie/:id",???);
 
